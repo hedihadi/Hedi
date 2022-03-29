@@ -1,6 +1,6 @@
 <template>
   <div class="home" style="width:100%">
-    <hr>
+    <hr class="">
     <div
       class="copyright"
     >

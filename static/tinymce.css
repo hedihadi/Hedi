@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins&family=Roboto:wght@500&family=Source+Sans+Pro&display=swap");
 .dark-theme {
 	--background: var(--gray6);
 	--background-opacity: rgba(18, 24, 27, 0.58);
@@ -25,7 +27,7 @@
 .light-theme {
 	--background: var(--gray1);
 	--background-opacity: hsla(0, 0%, 97.3%, 0.58);
-	--text-color: var(--gray);
+	--text-color: var(--gray4);
 	--h-color: var(--gray6);
 	--nav-shadow: 4px 0 10px -3px #c1c1c1;
 	--card-shadow: 0 4px 8px rgba(0, 30, 84, 0.12);
@@ -93,17 +95,17 @@
 	--card-radius: 0.25em;
 	transition: all .3s ease
 }
-
 body {
-	background: var(--background);
-	color: var(--text-color);
-	margin: 0;
-	font-family: var(--font-body);
+	flex-direction: column;
+	position: relative;
+	background: var(--card-bg);
+	box-shadow: var(--card-shadow);
+	line-height: 1.5;
+  color: var(--text-color);
 	font-size: var(--font-size);
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column
+
 }
+
 
 main {
 	margin-top: var(--nav-width);
@@ -116,24 +118,11 @@ a {
 }
 
 em,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1
+ {
 	color: var(--h-color)
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: var(--font-head);
-	font-weight: 400
-}
 
 img {
 	max-width: 100%;
@@ -174,7 +163,7 @@ footer .footer-links a {
 
 hr {
 	border: none;
-	border-bottom: 2px dashed var(--nav-bg);;
+	border-bottom: var(--h-border)
 }
 
 li {
@@ -2927,4 +2916,45 @@ label {
 		width: 100%;
 		max-width: 480px
 	}
+}
+pre {
+  padding: 20px;
+  white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+  white-space: -pre-wrap; /* Opera */
+  white-space: -o-pre-wrap; /* Opera */
+  white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+  word-wrap: break-word; /* IE 5.5+ */
+  background-color: #272727;
+  font-family: "Source Sans Pro", sans-serif;
+  width: 50%;
+  border-radius: 25px;
+  color: #e07a5f;
+}
+hr {
+  border: 2px dashed var(--gray6);
+  width: 100%;
+}
+code {
+  background-color: #272727;
+  font-family: "Source Sans Pro", sans-serif;
+  width: 50%;
+  border-radius: 25px;
+  color: #e07a5f;
+}
+li {
+  color: var(--h-color);
+  font-family: roboto;
+  font-weight: 400;
+  color: var(--blue);
+}
+h1 {
+  font-family: var(--font-header);
+	font-weight: 400
+
+}
+h1 strong {
+  font-family: var(--font-header);
+}
+strong {
+  font-family: var(--font-head);
 }

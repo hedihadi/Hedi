@@ -19,7 +19,7 @@
         >{{tag}}</p>
         <a
           v-if="logged"
-          :href="'/EditPost/?id=' + Post.key"
+          :href="'/posts/editpost?id=' + Post.key"
           class="btn btn-green"
           style="background-color: #ffcb2b; color:black"
         >Edit</a>
@@ -66,6 +66,9 @@ return{
   Post
 }
 },
+ mounted: function () {
+    document.title = this.Post.title;
+  },
  created() {
     this.$fire.auth.onAuthStateChanged( (user) => {
       if (user) {

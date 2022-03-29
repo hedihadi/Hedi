@@ -1,10 +1,7 @@
 <template>
   <div class="home">
-    <div class="text-center"><a
-        href="/posts/newpost"
-        v-if="logged"
-        class="btn btn-blue"
-      >New Post</a></div>
+<br><br><br>
+  <h2 class="text-center">All My Posts</h2>
     <div
       class="centered"
       style="text-align:right;margin-right:34%"
@@ -27,14 +24,14 @@
           </h6>
           <br />
           <a
-            :href="'/tags/?tag=' + post.key"
+            :href="'/posts/tags?tag=' + post.key"
             class="tag"
             v-for="tag in post.tags"
             :key="tag"
           >#{{tag}}</a>
           <a
             v-if="logged"
-          :href="'/posts/editpost?id=' + post.key"
+            :href="'/posts/editpost?id=' + post.key"
             class="btn btn-green"
             style="background-color: #DAD754;color:black"
           >Edit</a>
@@ -55,12 +52,7 @@
       </div>
 
     </div>
-<div class="text-center">
-      <a
-        href="/posts/allposts"
-        class="btn btn-green text-center btn-lg"
-      >View all posts</a>
-    </div>
+
   </div>
 </template>
 <script>
@@ -73,8 +65,7 @@ export default {
     data() {
     return {
       logged:false,
-      //show only 2 first posts, but check null for second post
-      posts: this.$store.state.posts[1]=="undefined" ? [this.$store.state.posts[0],this.$store.state.posts[1]] :[this.$store.state.posts[0]]
+      posts:this.$store.state.posts,
 
     }
   },
@@ -82,7 +73,6 @@ export default {
   Post:Post,
 
   },
-  
 async created() {
     this.$fire.auth.onAuthStateChanged( (user) => {
       if (user) {
