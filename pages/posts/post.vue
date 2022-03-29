@@ -42,7 +42,26 @@ export default {
   logged:false
   };
 },
-async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+head(){
+  //this clusterfuck gets the lines before the first <hr /> and use that as meta description.
+  //its important for SEO
+  const regex=/<(.|\n)*?>/g;
+var txt=this.Post.content.split("<hr />")[0]
+var matches=txt.match(regex)
+matches.forEach((match) =>{
+  txt=txt.replace(match,"")
+});
+return{
+  //change meta title to the post's title
+  title:this.Post.title,
+ meta: [
+   { name:"keywords",content:this.Post.tags},
+   {name:"descripton",content:txt}
+ ]
+}
+},
+ asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+
   var Post={};
 store.state.posts.forEach((element) => {
 
@@ -61,14 +80,14 @@ if(element.key==query.id){
   }
 }
 
+
 });
+     route.meta.title=Post.title;
+
 return{
   Post
 }
 },
- mounted: function () {
-    document.title = this.Post.title;
-  },
  created() {
     this.$fire.auth.onAuthStateChanged( (user) => {
       if (user) {
@@ -81,7 +100,7 @@ return{
 
       }
     });
-console.log("on client it is",this.Post);
+
     },
 
 }

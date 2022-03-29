@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <div class="text-center"><a
-        href="/posts/newpost"
+    <div class="text-center"><router-link
+        to="/posts/newpost"
         v-if="logged"
         class="btn btn-blue"
-      >New Post</a></div>
+      >New Post</router-link></div>
     <div
       class="centered"
       style="text-align:right;margin-right:34%"
@@ -18,7 +18,8 @@
       :key="post.key"
     >
 
-      <div class="card card-course">
+      <article>
+        <div class="card card-course">
         <div class="card-content">
           <h4>{{post.title}}</h4>
           <h6 style="display: inline; color: #e0e0e0">{{post.posted}}</h6>
@@ -26,12 +27,12 @@
             ({{post.timeago}})
           </h6>
           <br />
-          <a
-            :href="'/tags/?tag=' + post.key"
+          <router-link
+            :to="'/tags/?tag=' + post.key"
             class="tag"
             v-for="tag in post.tags"
             :key="tag"
-          >#{{tag}}</a>
+          >#{{tag}}</router-link>
           <a
             v-if="logged"
           :href="'/posts/editpost?id=' + post.key"
@@ -45,21 +46,22 @@
             style="background-color: #DA6454;;color:black"
           >Delete</a>
           <br>
-          <a
-            :href="'/posts/post?id=' + post.key"
+          <router-link
+            :to="'/posts/post?id=' + post.key"
             class="btn btn-blue"
             style=";color:black"
-          >Visit</a>
+          >Visit</router-link>
 
         </div>
       </div>
+      </article>
 
     </div>
 <div class="text-center">
-      <a
-        href="/posts/allposts"
+      <router-link
+        to="/posts/allposts"
         class="btn btn-green text-center btn-lg"
-      >View all posts</a>
+      >View all posts</router-link>
     </div>
   </div>
 </template>
@@ -82,7 +84,7 @@ export default {
   Post:Post,
 
   },
-  
+
 async created() {
     this.$fire.auth.onAuthStateChanged( (user) => {
       if (user) {
