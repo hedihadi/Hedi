@@ -1,0 +1,25 @@
+{
+  "name": "Hedi",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/firebase": "^8.2.2",
+    "core-js": "^3.19.3",
+    "firebase": "^9.6.10",
+    "isomorphic-fetch": "^3.0.0",
+    "moment": "^2.29.1",
+    "nuxt": "^2.15.8",
+    "vue": "^2.6.14",
+    "vue-cookies": "^1.7.4",
+    "vue-cookies-reactive": "^2.1.1",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^4.46.0"
+  }
+}
