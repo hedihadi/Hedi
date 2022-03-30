@@ -1,110 +1,86 @@
 <template>
   <div class="home">
-    <div style="padding:12%">
-      <h1 style="display: inline">{{Post.title}}</h1>
+    <div style="padding: 12%">
+      <h1 style="display: inline">{{ Post.title }}</h1>
       <div>
         <br />
-        <h5 style="display: inline;">posted:</h5>
-        <h5
-          class="tag tag-sm tag-firebase"
-          style="display: inline; "
-        >{{Post.posted}}</h5>
-        <h5 style="display: inline; color: #A8A8A8">
-          ({{Post.timeago}})
-        </h5>
-        <p
-          class="tag"
-          v-for="tag in Post.tags"
-          :key="tag"
-        >{{tag}}</p>
+        <h5 style="display: inline">posted:</h5>
+        <h5 class="tag tag-sm tag-firebase" style="display: inline">{{ Post.posted }}</h5>
+        <h5 style="display: inline; color: #a8a8a8">({{ Post.timeago }})</h5>
+        <p class="tag" v-for="tag in Post.tags" :key="tag">{{ tag }}</p>
         <a
           v-if="logged"
           :href="'/posts/editpost?id=' + Post.key"
           class="btn btn-green"
-          style="background-color: #ffcb2b; color:black"
-        >Edit</a>
+          style="background-color: #ffcb2b; color: black"
+          >Edit</a
+        >
       </div>
 
-      <div
-        class="tweet-card editor"
-        v-html="Post.content"
-      ></div>
-
+      <div class="tweet-card editor" v-html="Post.content"></div>
     </div>
-
   </div>
 </template>
 <script>
 export default {
-    data() {
+  data() {
+    return {
+      logged: false,
+    };
+  },
+  head() {
+    //this clusterfuck gets the lines before the first <hr /> and use that as meta description.
+    //its important for SEO
+    const regex = /<(.|\n)*?>/g;
+    var txt = this.Post.content.split("<hr />")[0];
+    var matches = txt.match(regex);
+    matches.forEach((match) => {
+      txt = txt.replace(match, "");
+    });
+    return {
+      //change meta title to the post's title
+      title: this.Post.title,
+      meta: [
+        { name: "keywords", content: this.Post.tags },
+        { name: "descripton", content: txt },
+      ],
+    };
+  },
+  asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
+    var Post = {};
+    store.state.posts.forEach((element) => {
+      if (element.key == query.id) {
+        const PostData = element;
+        console.log("it is", typeof [PostData]);
 
-  return {
-  logged:false
-  };
-},
-head(){
-  //this clusterfuck gets the lines before the first <hr /> and use that as meta description.
-  //its important for SEO
-  const regex=/<(.|\n)*?>/g;
-var txt=this.Post.content.split("<hr />")[0]
-var matches=txt.match(regex)
-matches.forEach((match) =>{
-  txt=txt.replace(match,"")
-});
-return{
-  //change meta title to the post's title
-  title:this.Post.title,
- meta: [
-   { name:"keywords",content:this.Post.tags},
-   {name:"descripton",content:txt}
- ]
-}
-},
- asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-
-  var Post={};
-store.state.posts.forEach((element) => {
-
-if(element.key==query.id){
-  const PostData=element;
-  console.log("it is",typeof[PostData])
-
-    Post={
-      title:PostData.title,
-      key:PostData.key,
-      tags:PostData.tags,
-      posted:PostData.posted,
-      timeago:PostData.timeago,
-      content:PostData.content
-
-  }
-}
-
-
-});
-     route.meta.title=Post.title;
-
-return{
-  Post
-}
-},
- created() {
-    this.$fire.auth.onAuthStateChanged( (user) => {
-      if (user) {
-        this.logged=true;
-        console.log("logged in - default page");
-
-      } else {
-        this.logged = false;
-                console.log("logged out - default page");
-
+        Post = {
+          title: PostData.title,
+          key: PostData.key,
+          tags: PostData.tags,
+          posted: PostData.posted,
+          timeago: PostData.timeago,
+          content: PostData.content,
+        };
       }
     });
+    route.meta.title = Post.title;
 
-    },
-
-}
-
+    return {
+      Post,
+    };
+  },
+  created() {
+    this.$fire.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.logged = true;
+        console.log("logged in - default page");
+      } else {
+        this.logged = false;
+        console.log("logged out - default page");
+      }
+    });
+  },
+};
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins&family=Roboto:wght@100&display=swap");
