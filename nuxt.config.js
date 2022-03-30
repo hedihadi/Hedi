@@ -19,9 +19,7 @@ export default {
       { rel: 'stylesheet', href: '/rcr1opg.css' },
     ]
   },
-  googleAnalytics: {
-    id: 'hedi-bc317'
-  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -37,7 +35,6 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/google-analytics'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
