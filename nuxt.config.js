@@ -8,7 +8,6 @@ export default {
     },
 
     meta: [
-      { name: "google-site-verification", content: "Nd146obIFrVxoP6GSj4zQwR_KKYK9Fthm6tz-iM0wxc" },
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Posts, Notes and Tutorials, from Hedi.' },
