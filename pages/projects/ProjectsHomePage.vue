@@ -82,16 +82,20 @@ export default {
     return {
       logged: false,
       //show only 2 first projects, but check null for second project
-      projects:
-        this.$store.state.projects[1] == "undefined"
-          ? [this.$store.state.projects[0], this.$store.state.projects[1]]
-          : [this.$store.state.projects[0]],
+
     };
   },
   components: {
     Project: Project,
   },
-
+asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+    var projects=this.$store.state.projects[1] == "undefined"
+          ? [this.$store.state.projects[0], this.$store.state.projects[1]]
+          : [this.$store.state.projects[0]];
+          return{
+              projects
+          }
+},
   async created() {
     this.$fire.auth.onAuthStateChanged((user) => {
       if (user) {

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    
+
     <div class="text-center"><router-link
         to="/posts/newpost"
         v-if="logged"
@@ -77,7 +77,7 @@ export default {
     return {
       logged:false,
       //show only 2 first posts, but check null for second post
-      posts: this.$store.state.posts[1]=="undefined" ? [this.$store.state.posts[0],this.$store.state.posts[1]] :[this.$store.state.posts[0]]
+
 
     }
   },
@@ -85,7 +85,12 @@ export default {
   Post:Post,
 
   },
-
+asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+  var posts=this.$store.state.posts[1]=="undefined" ? [this.$store.state.posts[0],this.$store.state.posts[1]] :[this.$store.state.posts[0]]
+  return{
+    posts
+  }
+},
 async created() {
     this.$fire.auth.onAuthStateChanged( (user) => {
       if (user) {
