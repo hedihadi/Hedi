@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    
     <div class="text-center"><router-link
         to="/posts/newpost"
         v-if="logged"
