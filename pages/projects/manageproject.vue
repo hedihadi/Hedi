@@ -143,7 +143,7 @@ export default {
   },
   created: function () {
     ///if we have an id in the query, use that id.
-    ///if there's no id, that means this is a new post
+    ///if there's no id, that means user is trying to make a new post
     if (this.$route.query.id == null) {
       const { Timestamp } = this.$fireModule.firestore;
 
@@ -174,9 +174,9 @@ export default {
             .get()
             .then((querySnapshot) => {
               const tabs = querySnapshot.docs.map((doc) => doc.data());
-              tabs.forEach((tab) => {
+              tabs.forEach((tab, index) => {
                 this.contents.push({
-                  tabid: tab.key,
+                  tabid: querySnapshot.docs[index].id,
                   content: tab.content,
                   postedSTR: moment(tab.posted.toDate()).format(
                     "DD/MM/YYYY hh:mm"
@@ -298,7 +298,7 @@ export default {
         if (content.content == "") {
           return;
         }
-        const tab = post.collection("tabs").doc();
+        const tab = post.collection("tabs").doc(content.tabid);
         tab.set({
           content: content.content,
           posted: content.posted,

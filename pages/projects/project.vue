@@ -13,7 +13,7 @@
           >Edit</a
         >
       </div>
-      <div v-for="tab in project.tabs" :key="tab">
+      <div v-for="tab in project.tabs" :key="tab.key">
         <h5 style="display: inline">posted:</h5>
         <h5 class="tag tag-sm tag-firebase" style="display: inline">
           {{ tab.posted }}

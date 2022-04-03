@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nuxtjs/firebase": "^8.2.2",
+    "@nuxtjs/sitemap": "^2.4.0",
     "@tinymce/tinymce-vue": "^3.2.8",
     "core-js": "^3.19.3",
     "firebase": "^9.6.10",
