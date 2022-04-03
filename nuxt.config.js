@@ -1,3 +1,5 @@
+import firebase from 'firebase/compat/app';
+import 'firebase/firestore'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
@@ -61,7 +63,45 @@ export default {
     ],
     '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: process.env.BASE_URL,
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    exclude: [
+      '/posts/editpost',
+      '/posts/newpost',
+      '/posts/post',
 
+      '/posts/PostsHomepage',
+      '/BottomFooter',
+      '/projects/manageproject',
+      '/projects/ProjectsHomePage',
+      '/projects/project',
+
+
+    ],
+    routes: async () => {
+      var app = firebase.initializeApp({
+        apiKey: "AIzaSyB0BoFiJ2LeEVflDnSikVsr4le7i5i8K-k",
+        authDomain: "hedi-bc317.firebaseapp.com",
+        projectId: "hedi-bc317",
+        storageBucket: "hedi-bc317.appspot.com",
+        messagingSenderId: "313801605853",
+        appId: "1:313801605853:web:eae7a9fee24a7b06535134",
+        measurementId: "G-93L924PZWJ"
+      })
+      var firestore = app.firestore();
+      var posts_collection = await firestore.collection("posts").get();
+      var projects_collection = await firestore.collection("projects").get();
+      var links = [];
+      links = links.concat(posts_collection.docs.map(v => `posts/post?id=${v.id}`))
+      links = links.concat(projects_collection.docs.map(v => `projects/project?id=${v.id}`))
+      return links;
+    }
+
+
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

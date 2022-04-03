@@ -19,7 +19,19 @@
           {{ tab.posted }}
         </h5>
         <h5 style="display: inline; color: #a8a8a8">({{ tab.timeago }})</h5>
-        <div class="tweet-card editor" v-html="tab.content"></div>
+        <a
+          @click="tab.visible = !tab.visible"
+          v-bind:class="tab.visible ? 'btn btn-red' : 'btn btn-green'"
+          style="color: black; padding-top: 0; padding-bottom: 0"
+        >
+          <p style="padding: 0" v-if="tab.visible == true">Hide</p>
+          <p v-if="tab.visible == false">Show</p>
+        </a>
+        <div
+          class="tweet-card editor"
+          v-if="tab.visible == true"
+          v-html="tab.content"
+        ></div>
       </div>
     </div>
   </div>
@@ -48,6 +60,10 @@ export default {
       if (element.key == query.id) {
         project = element;
         route.meta.title = project.title;
+        //add visible variable to each tab
+        for (var i = 0; i < project.tabs.length; i++) {
+          project.tabs[i].visible = true;
+        }
       }
     });
     return {
@@ -64,7 +80,6 @@ export default {
         console.log("logged out - default page");
       }
     });
-    console.log(this.project);
   },
 };
 </script>

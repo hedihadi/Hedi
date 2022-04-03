@@ -2349,7 +2349,10 @@ h1.tag {
 	background: var(--green);
 	color: #fff
 }
-
+.btn-red {
+	background: var(--red);
+	color: #fff
+}
 .btn-green:hover {
 	box-shadow: var(--card-shadow);
 	transform: translateY(-2px);
