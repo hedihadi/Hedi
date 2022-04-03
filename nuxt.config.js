@@ -64,15 +64,13 @@ export default {
     '@nuxtjs/sitemap'
   ],
   sitemap: {
-    path: '/sitemap.xml',
-    hostname: process.env.BASE_URL,
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     exclude: [
+      //these are management pages, no need to index it
       '/posts/editpost',
       '/posts/newpost',
       '/posts/post',
-
       '/posts/PostsHomepage',
       '/BottomFooter',
       '/projects/manageproject',
@@ -105,5 +103,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
 }
