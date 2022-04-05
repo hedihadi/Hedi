@@ -87,10 +87,10 @@ export default {
         appId: "1:313801605853:web:eae7a9fee24a7b06535134",
         measurementId: "G-93L924PZWJ"
       })
-      console.log("app is", app)
       var firee = getFirestore(app);
       var posts_collection = await getDocs(collection(firee, "posts"));
       var projects_collection = await getDocs(collection(firee, "projects"));
+      console.log
       var links = [];
       links = links.concat(posts_collection.docs.map(v => `posts/post?id=${v.id}`))
       links = links.concat(projects_collection.docs.map(v => `projects/project?id=${v.id}`))
