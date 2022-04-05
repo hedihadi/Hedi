@@ -26,6 +26,7 @@
         <a
           href="/posts/allposts"
           class="item item-text"
+          style="color:#2ec4b6"
           aria-label="All Posts"
         >
           Posts
@@ -33,12 +34,14 @@
         <a
           href="/projects/allprojects"
           class="item item-text"
+          style="color:#f87060"
           aria-label="All Projects"
         >
           Projects
         </a>
         <a
           href="/about"
+          style="color:#90be6d"
           class="item item-text"
           aria-label="About"
         >

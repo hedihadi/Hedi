@@ -31,7 +31,7 @@ export const actions = {
         })
 
         var firestore = app.firestore();
-        var posts_collection = await firestore.collection("posts").get();
+        var posts_collection = await firestore.collection("posts").orderBy("posted", "asc").get();
         var projects_collection = await firestore.collection("projects").get();
 
         var posts = [];
@@ -51,7 +51,7 @@ export const actions = {
             var project_doc = projects_collection.docs[i];
             //get the tabs
 
-            var tabs_collection = await firestore.collection("projects").doc(projects_collection.docs[i].id).collection("tabs").get();
+            var tabs_collection = await firestore.collection("projects").doc(projects_collection.docs[i].id).collection("tabs").orderBy("posted", "asc").get();
 
             var tabs = []
             for (var ii = 0; ii < tabs_collection.docs.length; ii++) {
@@ -63,6 +63,8 @@ export const actions = {
                     timeago: timeSince(tab_doc.data().posted.toDate()),
                 })
             }
+
+
             projects.push({
                 key: project_doc.id,
                 title: project_doc.data().title,
