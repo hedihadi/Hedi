@@ -76,8 +76,6 @@ export default {
       '/projects/manageproject',
       '/projects/ProjectsHomePage',
       '/projects/project',
-
-
     ],
     routes: async () => {
       var app = firebase.initializeApp({
@@ -96,6 +94,8 @@ export default {
       links = links.concat(posts_collection.docs.map(v => `posts/post?id=${v.id}`))
       links = links.concat(projects_collection.docs.map(v => `projects/project?id=${v.id}`))
       return links;
+
+
     }
 
 
