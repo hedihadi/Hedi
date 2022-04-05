@@ -87,7 +87,6 @@ export default {
         appId: "1:313801605853:web:eae7a9fee24a7b06535134",
         measurementId: "G-93L924PZWJ"
       })
-      console.log(app.firestore())
       console.log("app is", app)
       var firee = app.firestore();
       var posts_collection = await firee.collection("posts").get();
