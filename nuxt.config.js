@@ -89,8 +89,8 @@ export default {
       })
       console.log("app is", app)
       var firee = getFirestore(app);
-      var posts_collection = await collection(firee, "posts");
-      var projects_collection = await collection("projects");
+      var posts_collection = await getDocs(collection(firee, "posts"));
+      var projects_collection = await getDocs(collection(firee, "projects"));
       var links = [];
       links = links.concat(posts_collection.docs.map(v => `posts/post?id=${v.id}`))
       links = links.concat(projects_collection.docs.map(v => `projects/project?id=${v.id}`))
