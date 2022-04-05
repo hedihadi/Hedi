@@ -1,5 +1,5 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/firestore'
+import firebase from "firebase/app";
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
@@ -78,7 +78,7 @@ export default {
       '/projects/project',
     ],
     routes: async () => {
-      var app = firebase.initializeApp({
+      var app = initializeApp({
         apiKey: "AIzaSyB0BoFiJ2LeEVflDnSikVsr4le7i5i8K-k",
         authDomain: "hedi-bc317.firebaseapp.com",
         projectId: "hedi-bc317",
@@ -88,8 +88,8 @@ export default {
         measurementId: "G-93L924PZWJ"
       })
       console.log("app is", app)
-      var firee = app.firestore();
-      var posts_collection = await firee.collection("posts").get();
+      var firee = getFirestore(app);
+      var posts_collection = await collection(firee, "posts");
       var projects_collection = await firee.collection("projects").get();
       var links = [];
       links = links.concat(posts_collection.docs.map(v => `posts/post?id=${v.id}`))
