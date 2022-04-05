@@ -87,9 +87,9 @@ export default {
         appId: "1:313801605853:web:eae7a9fee24a7b06535134",
         measurementId: "G-93L924PZWJ"
       })
-      var firestore = app.firestore();
-      var posts_collection = await firestore.collection("posts").get();
-      var projects_collection = await firestore.collection("projects").get();
+      var firee = app.firestore();
+      var posts_collection = await firee.collection("posts").get();
+      var projects_collection = await firee.collection("projects").get();
       var links = [];
       links = links.concat(posts_collection.docs.map(v => `posts/post?id=${v.id}`))
       links = links.concat(projects_collection.docs.map(v => `projects/project?id=${v.id}`))
