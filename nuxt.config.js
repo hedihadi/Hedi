@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
