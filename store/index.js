@@ -31,7 +31,7 @@ export const actions = {
         })
 
         var firestore = app.firestore();
-        var posts_collection = await firestore.collection("posts").orderBy("posted", "asc").get();
+        var posts_collection = await firestore.collection("posts").orderBy("posted", "desc").get();
         var projects_collection = await firestore.collection("projects").get();
 
         var posts = [];
