@@ -169,11 +169,13 @@ export default {
       this.file_url = this.$refs.file.files[0];
     },
     submitFile() {
-      var formData = new FormData();
-      formData.append("image", file);
-     this.$fire.storage
-        .ref("postImages/" + file.name)
-        .put(file)
+     var name =
+        Math.random().toString(36) +
+        Math.random().toString(36) +
+        Math.random().toString(36);
+      this.$fire.storage
+        .ref("postImages/" + name)
+        .put(this.file_url)
         .then((response) => {
           response.ref
             .getDownloadURL()

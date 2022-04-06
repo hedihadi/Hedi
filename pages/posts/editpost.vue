@@ -161,7 +161,6 @@ export default {
 
         ["clean"],
       ],
-
     };
   },
   methods: {
@@ -169,11 +168,13 @@ export default {
       this.file_url = this.$refs.file.files[0];
     },
     submitFile() {
-      var formData = new FormData();
-      formData.append("image", file);
+      var name =
+        Math.random().toString(36) +
+        Math.random().toString(36) +
+        Math.random().toString(36);
       this.$fire.storage
-        .ref("postImages/" + file.name)
-        .put(file)
+        .ref("postImages/" + name)
+        .put(this.file_url)
         .then((response) => {
           response.ref
             .getDownloadURL()
@@ -209,7 +210,7 @@ export default {
 
       var formData = new FormData();
       formData.append("image", file);
-     this.$fire.storage
+      this.$fire.storage
         .ref("postImages/" + file.name)
         .put(file)
         .then((response) => {
@@ -225,26 +226,22 @@ export default {
     created() {},
   },
   created: function () {
-    this.$store.state.posts.forEach((post)=>{
-      if(post.key==this.$route.query.id){
+    this.$store.state.posts.forEach((post) => {
+      if (post.key == this.$route.query.id) {
         post.tags.forEach((value, index) => {
           this.tags = this.tags + value;
           if (!(index == post.tags.length - 1)) {
             this.tags = this.tags + ", ";
           }
-
         });
         this.title = post.title;
         this.content = post.content;
       }
     });
-
-
   },
-  mounted:function(){
-      document.title = "Edit - ".concat(this.title);
-
-  }
+  mounted: function () {
+    document.title = "Edit - ".concat(this.title);
+  },
 };
 </script>
 
