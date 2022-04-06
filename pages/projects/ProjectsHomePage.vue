@@ -5,69 +5,66 @@
         to="/projects/manageproject"
         v-if="logged"
         class="btn btn-blue"
-        >New Project</router-link
-      >
+      >New Project</router-link>
     </div>
-    <div class="centered" style="text-align: right; margin-right: 34%"></div>
-    <br />
     <div
-      class="row row-max-2"
-      style="margin-top: 30px"
-      v-for="project in projects"
-      :key="project.key"
-    >
-      <article>
-        <div class="card card-course">
-          <div class="card-content">
-            <h4>{{ project.title }}</h4>
-            <h6 style="display: inline; color: var(--text-color)">
-              last update:
-            </h6>
-            <h6 style="display: inline; color: #a7a7a7">
-              {{ project.tabs[project.tabs.length - 1].posted }}
-            </h6>
-            <h6 style="display: inline; color: #a8a8a8">
-              ({{ project.tabs[project.tabs.length - 1].timeago }})
-            </h6>
-            <br />
-            <router-link
-              :to="'/tags/?tag=' + project"
-              class="tag"
-              v-for="tag in project.tags"
-              :key="tag"
-              >#{{ tag }}</router-link
-            >
-            <a
-              v-if="logged"
-              :href="'/projects/manageproject?id=' + project.key"
-              class="btn btn-green"
-              style="background-color: #dad754; color: black"
-              >Edit</a
-            >
-        <a
-          v-if="logged"
-          @click="deletePost(project.key)"
-          class="btn btn-green"
-          style="background-color: #da6454; color: black"
-          >Delete</a
-        >
-            <br />
-            <router-link
-              :to="'/projects/project?id=' + project.key"
-              class="btn btn-blue"
-              style="color: black"
-              >Visit</router-link
-            >
+      class="centered"
+      style="text-align: right; margin-right: 34%"
+    ></div>
+    <br />
+    <div class="row row-max-2">
+      <div
+        v-for="project in projects"
+        :key="project.key"
+      >
+        <article>
+          <div class="card card-course">
+            <div class="card-content">
+              <h4>{{ project.title }}</h4>
+              <h6 style="display: inline; color: var(--text-color)">
+                last update:
+              </h6>
+              <h6 style="display: inline; color: #a7a7a7">
+                {{ project.tabs[project.tabs.length - 1].posted }}
+              </h6>
+              <h6 style="display: inline; color: #a8a8a8">
+                ({{ project.tabs[project.tabs.length - 1].timeago }})
+              </h6>
+              <br />
+              <router-link
+                :to="'/tags/?tag=' + project"
+                class="tag"
+                v-for="tag in project.tags"
+                :key="tag"
+              >#{{ tag }}</router-link>
+              <a
+                v-if="logged"
+                :href="'/projects/manageproject?id=' + project.key"
+                class="btn btn-green"
+                style="background-color: #dad754; color: black"
+              >Edit</a>
+              <a
+                v-if="logged"
+                @click="deletePost(project.key)"
+                class="btn btn-green"
+                style="background-color: #da6454; color: black"
+              >Delete</a>
+              <br />
+              <router-link
+                :to="'/projects/project?id=' + project.key"
+                class="btn btn-blue"
+                style="color: black"
+              >Visit</router-link>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
     <div class="text-center">
       <router-link
         to="/projects/allprojects"
         class="btn btn-green text-center btn-lg"
-        >View all Projects</router-link
-      >
+      >View all Projects</router-link>
     </div>
   </div>
 </template>
@@ -83,7 +80,7 @@ export default {
       logged: false,
       //show only 2 first projects, but check null for second project
       projects:
-        this.$store.state.projects[1] == "undefined"
+        this.$store.state.projects[1] != "undefined"
           ? [this.$store.state.projects[0], this.$store.state.projects[1]]
           : [this.$store.state.projects[0]],
     };

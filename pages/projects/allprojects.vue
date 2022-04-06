@@ -12,9 +12,8 @@
     </div>
     <div class="centered" style="text-align: right; margin-right: 34%"></div>
     <br />
-    <div
-      class="row row-max-2"
-      style="margin-top: 30px"
+   <div class="row row-max-2">
+      <div
       v-for="project in projects"
       :key="project.key"
     >
@@ -64,6 +63,7 @@
         </div>
       </article>
     </div>
+   </div>
     <div class="text-center">
       <router-link
         to="/projects/allprojects"
