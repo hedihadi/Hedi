@@ -80,7 +80,7 @@ export default {
       logged: false,
       //show only 2 first projects, but check null for second project
       projects:
-        this.$store.state.projects[1] != "undefined"
+        this.$store.state.projects.length > 1
           ? [this.$store.state.projects[0], this.$store.state.projects[1]]
           : [this.$store.state.projects[0]],
     };
